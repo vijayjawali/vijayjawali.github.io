@@ -3017,10 +3017,6 @@ input, select, textarea {
 			height: auto;
 		}
 	
-		.actions {
-			text-align: center;
-			justify-content: center;
-		}
 	
 		@media (max-width: 767px) {
 			.maingrid-card {
