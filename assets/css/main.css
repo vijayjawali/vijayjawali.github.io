@@ -2994,6 +2994,40 @@ input, select, textarea {
 			margin-left: 0; /* Remove left margin */
 		  }
 
+
+	
+		.maingrid-card {
+			max-width: 50%; /* Set the maximum width of the card to 50% of the window width */
+			margin: 0 auto; /* Center the card horizontally within the container */
+			border: 4px solid white; /* Add a white border line to the card */
+			padding: 10px; /* Add padding to the border on all sides */
+		}
+	
+		.maingrid-content {
+			text-align: center; /* Center the content within the card */
+		}
+	
+		.maingrid-content h4,
+		.maingrid-content p {
+			margin: 0;
+		}
+	
+		.maingrid-content img {
+			width: 100%;
+			height: auto;
+		}
+	
+		.actions {
+			text-align: center;
+			justify-content: center;
+		}
+	
+		@media (max-width: 767px) {
+			.maingrid-card {
+				max-width: 100%; /* Set the width of the card to 100% in mobile view */
+			}
+		}
+
 		  .grid {
 			position: relative;
 			max-width: 100%;
