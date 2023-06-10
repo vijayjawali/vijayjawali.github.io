@@ -43,11 +43,9 @@
 								<h1>Hi, my name is Vijay</h1>
 							</header>
 							<div class="content">
-								<p>Empowering Success with Data,<br />
-								Unraveling Insights and Conquering Complex Problems</p>
-								
 								<a href="https://github.com/vijayjawali" class="button next scrolly" target="_blank">GitHub</a>
-								
+								<p id="dynamic-text-main"></p>
+	
 							</div>
 							<ul class="actions", style="justify-content: space-between;  display: flex;flex-direction: column;align-items: center;">
 								<li>
@@ -73,8 +71,9 @@
 									</span>
 									<header class="major">
 										<h3><a href="work_experience.html" class="link">Work Experience</a></h3>
-										
+										<p id="dynamic-text-work-experience"></p>
 									</header>
+									
 								</article>
 								<article>
 									<span class="image">
@@ -82,8 +81,9 @@
 									</span>
 									<header class="major">
 										<h3><a href="projects.html" class="link">Projects</a></h3>
-										
+										<p id="dynamic-text-projects"></p>
 									</header>
+									
 								</article>
 								<article>
 									<span class="image">
@@ -91,6 +91,7 @@
 									</span>
 									<header class="major">
 										<h3><a href="certifications.html" class="link">Certifications</a></h3>
+										<p id="dynamic-text-certifications"></p>
 										
 									</header>
 								</article>
@@ -100,7 +101,7 @@
 									</span>
 									<header class="major">
 										<h3><a href="skills.html" class="link">Skills</a></h3>
-										
+										<p id="dynamic-text-skills"></p>
 									</header>
 								</article>
 								<article>
@@ -109,7 +110,7 @@
 									</span>
 									<header class="major">
 										<h3><a href="education.html" class="link">Education</a></h3>
-										
+										<p id="dynamic-text-education"></p>
 									</header>
 								</article>
 								<article>
@@ -118,7 +119,7 @@
 									</span>
 									<header class="major">
 										<h3><a href="articles.html" class="link">Articles</a></h3>
-										
+										<p id="dynamic-text-articles"></p>
 									</header>
 								</article>
 
@@ -232,6 +233,334 @@
 				  document.documentElement.scrollTop = 0;
 				}
 			  </script>
+			<script>
+				const texts = [
+				"Empowering Success with Data,Unraveling Insights and Conquering Complex Problems",
+				"Transforming raw data into valuable insights, one byte at a time.",
+				"Building the foundation for data-driven success.",
+				"Empowering businesses through the power of data engineering.",
+				"Unleashing the true potential of data for informed decision-making.",
+				"Conquering complex problems with elegant data engineering solutions.",
+				"Driving innovation and efficiency through robust data pipelines.",
+				"Crafting data architectures that empower organizations to thrive.",
+				"Turning data into a strategic asset for growth and optimization.",
+				"Unlocking the power of data to drive actionable intelligence.",
+				"Building bridges between data sources and analytics, bridging the gap between insights and action."
+				];
 
+			  
+				const delay = 100; // Delay (in milliseconds) between each text change
+				const pauseDuration = 2000; // Pause duration (in milliseconds) before displaying the next text
+				let index = 0;
+				let letterIndex = 0;
+			  
+				function changeLetter() {
+				  const dynamicText = document.getElementById("dynamic-text-main");
+				  dynamicText.textContent = texts[index].substring(0, letterIndex);
+				  letterIndex++;
+				  if (letterIndex > texts[index].length) {
+					letterIndex = 0;
+					index = (index + 1) % texts.length;
+					setTimeout(changeLetter, pauseDuration);
+				  } else {
+					setTimeout(changeLetter, delay);
+				  }
+				}
+			  
+				changeLetter();
+			  </script>
+				<script>
+					const work_texts = [
+					"Societe Generale, Specialist Software Engineer",
+					"Mindtree, Senior Engineer",
+					"Mindtree, Engineer",
+					"Mindtree, Trainee Software Engineer"
+					];
+					
+					const work_delay = 100; // Delay (in milliseconds) between each text change
+					const work_pauseDuration = 2000; // Pause duration (in milliseconds) before displaying the next text
+					let work_index = 0;
+					let work_letterIndex = 0;
+					
+					function work_changeLetter() {
+						const work_dynamicText = document.getElementById("dynamic-text-work-experience");
+						work_dynamicText.textContent = work_texts[work_index].substring(0, work_letterIndex);
+						work_letterIndex++;
+						if (work_letterIndex > work_texts[work_index].length) {
+						work_letterIndex = 0;
+						work_index = (work_index + 1) % work_texts.length;
+						setTimeout(work_changeLetter, work_pauseDuration);
+						} else {
+						setTimeout(work_changeLetter, work_delay);
+						}
+					}
+					
+					work_changeLetter();
+					</script>
+					<script>
+						const project_texts = [
+						"Evaluating Deep-Learning based text summarisation models for news articles",
+						"Fuel index inflation forecasting in the UK",
+						"Neuroimaging Data Vault 2.0 Implementation",
+						"SpaceX Falcon 9 First Stage Landing Prediction",
+						"SuperHero",
+						"Movie Similarities"
+						];
+						
+						const project_delay = 100; // Delay (in milliseconds) between each text change
+						const project_pauseDuration = 2000; // Pause duration (in milliseconds) before displaying the next text
+						let project_index = 0;
+						let project_letterIndex = 0;
+						
+						function project_changeLetter() {
+							const project_dynamicText = document.getElementById("dynamic-text-projects");
+							project_dynamicText.textContent = project_texts[project_index].substring(0, project_letterIndex);
+							project_letterIndex++;
+							if (project_letterIndex > project_texts[project_index].length) {
+							project_letterIndex = 0;
+							project_index = (project_index + 1) % project_texts.length;
+							setTimeout(project_changeLetter, project_pauseDuration);
+							} else {
+							setTimeout(project_changeLetter, project_delay);
+							}
+						}
+						
+						project_changeLetter();
+						</script>
+				<script>
+					const certification_texts = [
+					"Python Programming Masterclass - Udemy",
+					"Fundamentals of Scalable Data Science - Coursera",
+					"Fundamentals of Scalable Data Science - Credly",
+					"Summary Statistics in Public Health - Coursera",
+					"Hypothesis Testing in Public Health - Coursera",
+					"Multiple Regression Analysis in Public Health - Coursera",
+					"Simple Regression Analysis in Public Health - Coursera",
+					"Biostatistics in Public Health Specialization - Coursera",
+					"Exploratory Data Analysis for Machine Learning - Coursera",
+					"Supervised Machine Learning: Regression - Coursera",
+					"Supervised Machine Learning: Classification - Coursera",
+					"Unsupervised Machine Learning - Coursera",
+					"IBM Introduction to Machine Learning Specialization - Coursera",
+					"Deep Learning and Reinforcement Learning - Coursera",
+					"Specialized Models: Time Series and Survival Analysis - Coursera",
+					"IBM Machine Learning Professional Certificate - Coursera",
+					"Big Data Foundation - Digital Vidya",
+					"Managing Big Data with MySQL - Coursera",
+					"Foundations: Data, Data, Everywhere - Coursera",
+					"Ask Questions to Make Data-Driven Decisions - Coursera",
+					"R Programming A-Z™: R For Data Science With Real Exercises! - Udemy",
+					"Prepare Data for Exploration - Coursera",
+					"R Programming: Advanced Analytics In R For Data Science - Udemy",
+					"Process Data from Dirty to Clean - Coursera",
+					"Analyze Data to Answer Questions - Coursera",
+					"PySpark & AWS: Master Big Data With PySpark and AWS - Udemy",
+					"Google Data Analytics Certificate - Credly",
+					"Google Data Analytics Specialization - Coursera",
+					"Share Data Through the Art of Visualization - Coursera",
+					"Data Analysis with R Programming - Coursera",
+					"Google Data Analytics Capstone: Complete a Case Study - Coursera",
+					"Big Data on Amazon Web Services (AWS) - Udemy",
+					"What is Data Science - Coursera",
+					"Tools for Data Science - Coursera",
+					"Scala & Functional Programming for Beginners - Udemy",
+					"Data Science Orientation - Credly",
+					"Tools for Data Science - Credly",
+					"Data Science Methodology - Credly",
+					"Advanced Scala and Functional Programming - Udemy",
+					"Python for Data Science, AI & Development - Coursera",
+					"Python Project for Data Science - Coursera",
+					"Python for Data Science and AI - Credly",
+					"Python Project for Data Science - Credly",
+					"Databases and SQL for Data Science with Python (with Honors) - Coursera",
+					"Databases and SQL for Data Science - Credly",
+					"Apache Spark with Scala - Hands On with Big Data! - Udemy",
+					"Data Analysis with Python - Credly",
+					"Data Analysis with Python - Coursera",
+					"Hive to ADVANCE Hive - Udemy",
+					"Data Visualization with Python - Coursera",
+					"Machine Learning with Python - Coursera",
+					"Data Visualization with Python - Credly",
+					"Applied Data Science Capstone - Credly",
+					"Applied Data Science Capstone - Coursera",
+					"IBM Data Science Specialization - Coursera",
+					"Data Science Professional Certificate - Credly",
+					"Machine Learning with Python - Credly",
+					"Applied Data Science Capstone - Credly",
+					"Applied Data Science Capstone - Coursera",
+					"Amazon Web Services Concepts - Udemy",
+					"Analyzing and Visualizing Data with Microsoft Power BI | Basics - Udemy",
+					"Amazon Web Services Essentials - Udemy",
+					"Big Data Emerging Technologies - Coursera",
+					"Introduction to Data Science in Python - Coursera",
+					"Tools for Data Science - Coursera",
+					"What is Data Science - Coursera",
+					"Data Science Methodology - Coursera",
+					"Introduction to Big Data - Coursera",
+					"Hadoop Platform and Application Framework - Coursera",
+					"Getting started with Python - Coursera",
+					"JAVA AND TESTING - ABC For Technology Training"
+					];
+					
+					const certification_delay = 100; // Delay (in milliseconds) between each text change
+					const certification_pauseDuration = 2000; // Pause duration (in milliseconds) before displaying the next text
+					let certification_index = 0;
+					let certification_letterIndex = 0;
+					
+					function certification_changeLetter() {
+						const certification_dynamicText = document.getElementById("dynamic-text-certifications");
+						certification_dynamicText.textContent = certification_texts[certification_index].substring(0, certification_letterIndex);
+						certification_letterIndex++;
+						if (certification_letterIndex > certification_texts[certification_index].length) {
+						certification_letterIndex = 0;
+						certification_index = (certification_index + 1) % certification_texts.length;
+						setTimeout(certification_changeLetter, certification_pauseDuration);
+						} else {
+						setTimeout(certification_changeLetter, certification_delay);
+						}
+					}
+					
+					certification_changeLetter();
+					</script>
+				<script>
+					const skill_texts = [
+					"Unstructured Data",
+					"Data Visualization",
+					"Extract Transform Load",
+					"Apache Spark",
+					"PySpark",
+					"SparkSQL",
+					"MapReduce",
+					"Hadoop",
+					"Apache Kafka",
+					"Apache Oozie",
+					"Databricks",
+					"Scala",
+					"Python",
+					"R",
+					"Java",
+					"Couchbase",
+					"Oracle",
+					"PostgreSQL",
+					"Apache Cassandra",
+					"Teradata",
+					"Neo4j",
+					"MongoDB",
+					"MySQL",
+					"HBase",
+					"Hive",
+					"Snowflake",
+					"NumPy",
+					"pandas",
+					"scikit-learn",
+					"TensorFlow",
+					"PyTorch",
+					"Amazon Web Services",
+					"Amazon S3",
+					"Amazon EMR",
+					"Amazon EC2",
+					"GitHub",
+					"Git",
+					"Visual Studio Code",
+					"Jupyter",
+					"PyCharm",
+					"IntelliJ IDEA",
+					"RStudio",
+					"Eclipse IDE",
+					"Notepad++",
+					"Jira",
+					"Confluence",
+					"Jenkins",
+					"Plotly",
+					"Power BI",
+					"Tableau",
+					"Windows",
+					"Linux",
+					"Excel",
+					"OneNote",
+					"PowerPoint",
+					"SharePoint",
+					"Teams",
+					"Word"
+					];
+										
+					const skill_delay = 100; // Delay (in milliseconds) between each text change
+					const skill_pauseDuration = 2000; // Pause duration (in milliseconds) before displaying the next text
+					let skill_index = 0;
+					let skill_letterIndex = 0;
+					
+					function skill_changeLetter() {
+						const skill_dynamicText = document.getElementById("dynamic-text-skills");
+						skill_dynamicText.textContent = skill_texts[skill_index].substring(0, skill_letterIndex);
+						skill_letterIndex++;
+						if (skill_letterIndex > skill_texts[skill_index].length) {
+						skill_letterIndex = 0;
+						skill_index = (skill_index + 1) % skill_texts.length;
+						setTimeout(skill_changeLetter, skill_pauseDuration);
+						} else {
+						setTimeout(skill_changeLetter, skill_delay);
+						}
+					}
+					
+					skill_changeLetter();
+					</script>
+				<script>
+					const education_texts = [
+					"University of Birmingham,M.Sc Data Science",
+					"Sir M.Visvesvaraya Insstitute of Technology,B.E Electrical and Electronics Engineering",
+					"Sri Guru Independent,Pre University College",
+					"Sri Guru Vidya Peetha,Secondary School"
+					];
+					
+					const education_delay = 100; // Delay (in milliseconds) between each text change
+					const education_pauseDuration = 2000; // Pause duration (in milliseconds) before displaying the next text
+					let education_index = 0;
+					let education_letterIndex = 0;
+					
+					function education_changeLetter() {
+						const education_dynamicText = document.getElementById("dynamic-text-education");
+						education_dynamicText.textContent = education_texts[education_index].substring(0, education_letterIndex);
+						education_letterIndex++;
+						if (education_letterIndex > education_texts[education_index].length) {
+						education_letterIndex = 0;
+						education_index = (education_index + 1) % education_texts.length;
+						setTimeout(education_changeLetter, education_pauseDuration);
+						} else {
+						setTimeout(education_changeLetter, education_delay);
+						}
+					}
+					
+					education_changeLetter();
+					</script>
+					<script>
+						const article_texts = [
+						"Empowering Success with Data,Unraveling Insights and Conquering Complex Problems",
+						"The only way to do great work is to love what you do. - Steve Jobs",
+						"Innovation distinguishes between a leader and a follower. - Steve Jobs",
+						"The future belongs to those who believe in the beauty of their dreams. - Eleanor Roosevelt",
+						"Success is not final, failure is not fatal: It is the courage to continue that counts. - Winston Churchill",
+						"The greatest glory in living lies not in never falling, but in rising every time we fall. - Nelson Mandela"
+						];
+						
+						const article_delay = 100; // Delay (in milliseconds) between each text change
+						const article_pauseDuration = 2000; // Pause duration (in milliseconds) before displaying the next text
+						let article_index = 0;
+						let article_letterIndex = 0;
+						
+						function article_changeLetter() {
+							const article_dynamicText = document.getElementById("dynamic-text-articles");
+							article_dynamicText.textContent = article_texts[article_index].substring(0, article_letterIndex);
+							article_letterIndex++;
+							if (article_letterIndex > article_texts[article_index].length) {
+							article_letterIndex = 0;
+							article_index = (article_index + 1) % article_texts.length;
+							setTimeout(article_changeLetter, article_pauseDuration);
+							} else {
+							setTimeout(article_changeLetter, article_delay);
+							}
+						}
+						
+						article_changeLetter();
+						</script>
 	</body>
 </html>
