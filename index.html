@@ -250,28 +250,40 @@
 				"Unlocking the power of data to drive actionable intelligence.",
 				"Building bridges between data sources and analytics, bridging the gap between insights and action."
 				];
-
-			  
+			
 				const delay = 100; // Delay (in milliseconds) between each text change
 				const pauseDuration = 2000; // Pause duration (in milliseconds) before displaying the next text
 				let index = 0;
 				let letterIndex = 0;
-			  
+				
+				// Shuffle the texts array randomly
+				function shuffleArray(array) {
+				for (let i = array.length - 1; i > 0; i--) {
+					const j = Math.floor(Math.random() * (i + 1));
+					[array[i], array[j]] = [array[j], array[i]];
+				}
+				return array;
+				}
+				
+				// Shuffle the texts array before starting
+				shuffleArray(texts);
+				
 				function changeLetter() {
-				  const dynamicText = document.getElementById("dynamic-text-main");
-				  dynamicText.textContent = texts[index].substring(0, letterIndex);
-				  letterIndex++;
-				  if (letterIndex > texts[index].length) {
+				const dynamicText = document.getElementById("dynamic-text-main");
+				dynamicText.textContent = texts[index].substring(0, letterIndex);
+				letterIndex++;
+				if (letterIndex > texts[index].length) {
 					letterIndex = 0;
 					index = (index + 1) % texts.length;
 					setTimeout(changeLetter, pauseDuration);
-				  } else {
+				} else {
 					setTimeout(changeLetter, delay);
-				  }
 				}
-			  
+				}
+				
 				changeLetter();
-			  </script>
+			</script>
+  
 				<script>
 					const work_texts = [
 					"Societe Generale, Specialist Software Engineer",
