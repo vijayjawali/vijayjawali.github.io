@@ -2958,7 +2958,25 @@ input, select, textarea {
 			border-radius: 1999px;
 			left: -39px;
 			top: 50%;
-			border: 6px solid #6927B0;
+			border: 6px solid #8d82c4;
+			transform: translate(-50%, -50%);
+		  }
+
+		  .timeline-item-academic {
+			position: relative;
+			margin-bottom: 50px;
+		  }
+
+		  
+
+		  .timeline-item-academic::before {
+			content: "";
+			position: absolute;
+			width: 20px;
+			height: 20px;
+			border-radius: 1999px;
+			left: -39px;
+			top: 50%;
 			transform: translate(-50%, -50%);
 		  }
 		  
@@ -2987,7 +3005,7 @@ input, select, textarea {
 		  
 		  
 		  .timeline-card:hover {
-			background-color: #9C27B0;
+			background-color: #8d82c4;
 		  }
 		  
 		  .timeline-content {
@@ -4322,4 +4340,161 @@ input, select, textarea {
 			transform: none;
 			opacity: 1;
 			visibility: visible;
+		}
+
+		.gallery-year {
+			margin-bottom: 2em;
+		}
+		.gallery-month {
+			margin-bottom: 1em;
+		}
+		.certificate-gallery {
+			display: flex;
+			flex-wrap: wrap;
+			gap: 1em;
+		}
+		.certificate-item {
+			width: 200px;
+			text-align: center;
+			transition: transform 0.3s ease, box-shadow 0.3s ease;
+		}
+		.certificate-item:hover {
+			transform: scale(1.05);
+			box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+		}
+		.certificate-item a {
+			display: block;
+			text-decoration: none;
+			color: inherit;
+		}
+		.certificate-item img {
+			width: 100%;
+			height: auto;
+			object-fit: cover;
+			transition: opacity 0.3s ease;
+		}
+		.certificate-item:hover img {
+			opacity: 0.8;
+		}
+		.certificate-item h4 {
+			font-size: 0.9em;
+			margin-top: 0.5em;
+		}
+		.academic-certificates {
+			margin-bottom: 3em;
+		}
+		.academic-certificate-item {
+			width: 400px;
+			text-align: center;
+			transition: transform 0.3s ease, box-shadow 0.3s ease;
+		}
+		.academic-certificate-item:hover {
+			transform: scale(1.05);
+			box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+		}
+		.academic-certificate-item a {
+			display: block;
+			text-decoration: none;
+			color: inherit;
+		}
+		.academic-certificate-item img {
+			width: 100%;
+			height: auto;
+			object-fit: cover;
+			transition: opacity 0.3s ease;
+		}
+		.academic-certificate-item:hover img {
+			opacity: 0.8;
+		}
+		.academic-certificate-item h4 {
+			font-size: 1.2em;
+			margin-top: 0.5em;
+		}
+		.professional-certificates {
+			margin-bottom: 3em;
+		}
+		.professional-certificate-item {
+			width: 300px;
+			text-align: center;
+			transition: transform 0.3s ease, box-shadow 0.3s ease;
+		}
+		.professional-certificate-item:hover {
+			transform: scale(1.05);
+			box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+		}
+		.professional-certificate-item a {
+			display: block;
+			text-decoration: none;
+			color: inherit;
+		}
+		.professional-certificate-item img {
+			width: 100%;
+			height: auto;
+			object-fit: cover;
+			transition: opacity 0.3s ease;
+		}
+		.professional-certificate-item:hover img {
+			opacity: 0.8;
+		}
+		.professional-certificate-item h4 {
+			font-size: 1.1em;
+			margin-top: 0.5em;
+		}
+		.certification {
+			margin-top: 2em;
+		}
+		.year-toggle {
+			cursor: pointer;
+			padding: 0.5em;
+			background-color: #f0f0f0;
+			border: 1px solid #ddd;
+			border-radius: 4px;
+			margin-bottom: 1em;
+		}
+		.month-container {
+			display: none;
+			padding-left: 1em;
+		}
+		details[open] .month-container {
+			display: block;
+		}
+		.certification-item {
+			margin-bottom: 1em;
+		}
+		.certification-month {
+			font-weight: bold;
+			margin-bottom: 0.5em;
+		}
+		.certification-card {
+			background-color: #fff;
+			border: 1px solid #ddd;
+			border-radius: 4px;
+			padding: 1em;
+			margin-bottom: 1em;
+		}
+		.certification-card h4 {
+			margin-top: 0;
+		}
+		.button.primary.small {
+			font-size: 0.8em;
+			padding: 0.5em 1em;
+		}
+
+		.year-navigation {
+			margin: 2em 0;
+		}
+		
+		.year-navigation ul {
+			list-style-type: none;
+			padding: 0;
+		}
+		
+		.year-navigation ul li {
+			display: inline-block;
+			margin-right: 1em;
+		}
+		
+		.year-navigation ul li a {
+			text-decoration: none;
+			color: #fff;
 		}
