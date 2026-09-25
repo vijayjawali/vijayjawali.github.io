@@ -121,8 +121,41 @@
 		</div>
 	</header>
 
-	<!-- Section tiles -->
 	<main>
+		<!-- Ask about me -->
+		<section class="section" id="ask" data-ask>
+			<div class="wrap">
+				<div class="section-head reveal">
+					<p class="eyebrow">AI · Ask anything</p>
+					<h2>Ask about me</h2>
+					<p class="lead">Curious about my experience, stack or availability? Ask a question and a small AI assistant will answer from my background.</p>
+				</div>
+				<div class="ask-box reveal">
+					<div class="ask-head">
+						<span class="ask-ico"><i class="fas fa-robot"></i></span>
+						<div>
+							<h3>Vijay's AI assistant</h3>
+							<p>Grounded in Vijay's resume &amp; portfolio</p>
+						</div>
+					</div>
+					<form>
+						<div class="ask-row">
+							<input class="ask-input" type="text" maxlength="200" placeholder="e.g. What has Vijay built with Spark?" aria-label="Ask a question about Vijay" autocomplete="off">
+							<button class="btn btn-primary ask-send" type="submit"><i class="fas fa-paper-plane"></i> Ask</button>
+						</div>
+					</form>
+					<div class="ask-suggest">
+						<button type="button" class="ask-chip">What is his experience with Apache Spark?</button>
+						<button type="button" class="ask-chip">What did he build with LLMs?</button>
+						<button type="button" class="ask-chip">Is he open to new opportunities?</button>
+						<button type="button" class="ask-chip">Which cloud platforms does he use?</button>
+					</div>
+					<div class="ask-answer" aria-live="polite"></div>
+					<p class="ask-note">Answers are AI-generated from Vijay's background and may be imperfect. For anything important, please <a href="#contact">get in touch</a>.</p>
+				</div>
+			</div>
+		</section>
+
 		<!-- Impact metrics -->
 		<section class="section tight" id="impact">
 			<div class="wrap">
@@ -217,40 +250,6 @@
 						looking for new opportunities to apply my skills and experience to problems worth solving.
 					</p>
 					<a href="Resume.pdf" class="btn btn-primary" download target="_blank"><i class="fas fa-download"></i> Download Resume</a>
-				</div>
-			</div>
-		</section>
-
-		<!-- Ask about me -->
-		<section class="section" id="ask" data-ask>
-			<div class="wrap">
-				<div class="section-head reveal">
-					<p class="eyebrow">AI · Ask anything</p>
-					<h2>Ask about me</h2>
-					<p class="lead">Curious about my experience, stack or availability? Ask a question and a small AI assistant will answer from my background.</p>
-				</div>
-				<div class="ask-box reveal">
-					<div class="ask-head">
-						<span class="ask-ico"><i class="fas fa-robot"></i></span>
-						<div>
-							<h3>Vijay's AI assistant</h3>
-							<p>Grounded in Vijay's resume &amp; portfolio</p>
-						</div>
-					</div>
-					<form>
-						<div class="ask-row">
-							<input class="ask-input" type="text" maxlength="200" placeholder="e.g. What has Vijay built with Spark?" aria-label="Ask a question about Vijay" autocomplete="off">
-							<button class="btn btn-primary ask-send" type="submit"><i class="fas fa-paper-plane"></i> Ask</button>
-						</div>
-					</form>
-					<div class="ask-suggest">
-						<button type="button" class="ask-chip">What is his experience with Apache Spark?</button>
-						<button type="button" class="ask-chip">What did he build with LLMs?</button>
-						<button type="button" class="ask-chip">Is he open to new opportunities?</button>
-						<button type="button" class="ask-chip">Which cloud platforms does he use?</button>
-					</div>
-					<div class="ask-answer" aria-live="polite"></div>
-					<p class="ask-note">Answers are AI-generated from Vijay's background and may be imperfect. For anything important, please <a href="#contact">get in touch</a>.</p>
 				</div>
 			</div>
 		</section>
