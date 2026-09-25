@@ -457,3 +457,52 @@ hr { border: 0; height: 1px; background: var(--border); margin: 2.5rem 0; }
 .pagination .page.active { background: var(--accent); color: #fff; border-color: var(--accent); }
 .pagination .disabled { opacity: .45; cursor: not-allowed; }
 .pagination .dots { border: 0; background: transparent; }
+
+/* =========================================================================
+   feature/creative — data-pipeline hero, impact metrics, Ask-me widget
+   ========================================================================= */
+
+/* ---------- Hero right column ---------- */
+.hero-visual { display: flex; align-items: center; justify-content: center; }
+@media (max-width: 860px) { .hero-visual { margin-top: 8px; } }
+
+/* Animated data pipeline */
+.pipeline { position: relative; width: 100%; max-width: 340px; padding: 8px 0; }
+.pipeline::before { content: ""; position: absolute; left: 19px; top: 26px; bottom: 26px; width: 2px; background: var(--border); }
+.pipe-packet { position: absolute; left: 15px; top: 0; width: 10px; height: 10px; border-radius: 50%; background: var(--accent); box-shadow: 0 0 10px 2px var(--accent-ring); animation: pipe-flow 3.2s linear infinite; z-index: 0; }
+.pipe-packet.p2 { animation-delay: 1.6s; }
+@keyframes pipe-flow { 0% { top: 12px; opacity: 0; } 12% { opacity: 1; } 88% { opacity: 1; } 100% { top: calc(100% - 16px); opacity: 0; } }
+.pipe-stage { position: relative; display: flex; align-items: center; gap: 14px; padding: 9px 0; }
+.pipe-node { position: relative; z-index: 1; width: 40px; height: 40px; flex: none; border-radius: 12px; display: grid; place-items: center; font-size: 1.05rem; background: var(--surface); border: 1px solid var(--border); color: var(--muted); box-shadow: var(--shadow-sm); animation: pipe-glow 3.2s ease-in-out infinite; animation-delay: calc(var(--i) * 0.8s); }
+@keyframes pipe-glow { 0%, 62%, 100% { border-color: var(--border); color: var(--muted); box-shadow: var(--shadow-sm); transform: none; } 10%, 26% { border-color: var(--accent); color: var(--accent); box-shadow: 0 0 0 4px var(--accent-ring); transform: translateY(-1px); } }
+.pipe-card { display: flex; flex-direction: column; }
+.pipe-name { margin: 0; font-weight: 700; font-size: .98rem; color: var(--text); }
+.pipe-sub { margin: 0; font-family: var(--mono); font-size: .75rem; color: var(--muted); }
+@media (prefers-reduced-motion: reduce) { .pipe-packet { display: none; } .pipe-node { animation: none; } }
+
+/* ---------- Impact metrics ---------- */
+.metrics { display: grid; grid-template-columns: repeat(5, 1fr); gap: 16px; }
+@media (max-width: 900px) { .metrics { grid-template-columns: repeat(2, 1fr); } }
+.metric { text-align: center; padding: 22px 14px; }
+.metric .m-num { display: block; font-size: clamp(1.8rem, 4vw, 2.5rem); font-weight: 800; letter-spacing: -0.02em; line-height: 1.05; background: linear-gradient(100deg, var(--accent), var(--accent-2)); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent; }
+.metric .m-label { margin: 9px 0 0; font-size: .86rem; color: var(--text-soft); line-height: 1.35; }
+
+/* ---------- Ask about me ---------- */
+.ask-box { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius-lg); box-shadow: var(--shadow); padding: 22px; max-width: 780px; }
+.ask-head { display: flex; align-items: center; gap: 12px; margin-bottom: 16px; }
+.ask-head .ask-ico { width: 42px; height: 42px; border-radius: 12px; flex: none; display: grid; place-items: center; font-size: 1.15rem; color: #fff; background: linear-gradient(135deg, var(--accent), var(--accent-2)); }
+.ask-head h3 { margin: 0; font-size: 1.1rem; }
+.ask-head p { margin: 2px 0 0; font-size: .84rem; color: var(--muted); }
+.ask-row { display: flex; gap: 10px; }
+.ask-input { flex: 1; min-width: 0; padding: 12px 15px; border-radius: 12px; border: 1px solid var(--border); background: var(--surface); color: var(--text); font-family: var(--font); font-size: .98rem; transition: border-color .18s ease, box-shadow .18s ease; }
+.ask-input:focus { outline: none; border-color: var(--accent); box-shadow: 0 0 0 4px var(--accent-ring); }
+.ask-send { flex: none; }
+.ask-send[disabled] { opacity: .6; cursor: default; transform: none; }
+.ask-suggest { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 14px; }
+.ask-chip { font-family: var(--font); font-size: .83rem; cursor: pointer; padding: 7px 13px; border-radius: 999px; border: 1px solid var(--border); background: var(--surface-2); color: var(--text-soft); transition: all .16s ease; }
+.ask-chip:hover { color: var(--accent); border-color: var(--accent); }
+.ask-answer { margin-top: 16px; padding: 16px 18px; border-radius: var(--radius); background: var(--surface-2); border: 1px solid var(--border); color: var(--text); line-height: 1.72; white-space: pre-wrap; display: none; }
+.ask-answer.show { display: block; }
+.ask-answer .dots::after { content: "…"; animation: askdots 1.2s steps(4) infinite; }
+@keyframes askdots { 0% { content: ""; } 25% { content: "."; } 50% { content: ".."; } 75% { content: "..."; } }
+.ask-note { font-size: .77rem; color: var(--muted); margin: 12px 0 0; }

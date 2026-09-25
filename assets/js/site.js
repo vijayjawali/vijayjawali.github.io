@@ -189,4 +189,97 @@
       apply();
     });
   });
+
+  /* ---------- feature/creative: count-up metrics + Ask-me ---------- */
+  ready(function () {
+    /* Count-up metrics */
+    var nums = doc.querySelectorAll('[data-count-to]');
+    function fmt(el, val) {
+      var dec = parseInt(el.getAttribute('data-decimals') || '0', 10);
+      return (el.getAttribute('data-prefix') || '') + val.toFixed(dec) + (el.getAttribute('data-suffix') || '');
+    }
+    function run(el) {
+      var target = parseFloat(el.getAttribute('data-count-to')), dur = 1500, start = null;
+      function step(ts) {
+        if (!start) start = ts;
+        var p = Math.min((ts - start) / dur, 1), eased = 1 - Math.pow(1 - p, 3);
+        el.textContent = fmt(el, target * eased);
+        if (p < 1) requestAnimationFrame(step); else el.textContent = fmt(el, target);
+      }
+      requestAnimationFrame(step);
+    }
+    if (nums.length) {
+      if ('IntersectionObserver' in window) {
+        var io = new IntersectionObserver(function (entries) {
+          entries.forEach(function (en) { if (en.isIntersecting) { run(en.target); io.unobserve(en.target); } });
+        }, { threshold: 0.4 });
+        nums.forEach(function (n) { n.textContent = fmt(n, 0); io.observe(n); });
+      } else { nums.forEach(function (n) { run(n); }); }
+    }
+
+    /* Ask about me — grounded answer via a free, key-less LLM (Pollinations) */
+    var ask = doc.querySelector('[data-ask]');
+    if (!ask) return;
+    var form = ask.querySelector('form'),
+        input = ask.querySelector('.ask-input'),
+        sendBtn = ask.querySelector('.ask-send'),
+        answer = ask.querySelector('.ask-answer'),
+        chips = ask.querySelectorAll('.ask-chip'),
+        busy = false;
+
+    var CONTEXT = [
+      "You are a helpful assistant embedded on the personal portfolio website of Vijay Jawali.",
+      "Answer visitor questions about Vijay warmly, concisely and professionally (2-4 sentences).",
+      "Only use the facts below. If something is not covered, say you don't have that detail and suggest contacting Vijay. Never invent facts. Refer to Vijay in the third person.",
+      "",
+      "FACTS ABOUT VIJAY JAWALI:",
+      "- Data Engineer with 7+ years of experience, based in Bengaluru, India. Email vijayjawali@outlook.com, phone +91 9483210444.",
+      "- Currently Software Engineer III at Walmart Global Tech (since April 2024): builds and optimises data pipelines validating over $1.5B in daily transactions; led an Apache Spark 2.x-to-3.x migration improving performance 25%; cut database storage costs 30%; earned the 'Impact Driver' award.",
+      "- Earlier roles: Senior Engineer at Altimetrik (Intuit) on GenAI/LLMs and log anomaly detection with a fine-tuned GPT-3.5 model (won a 'Team' GenAI award); Specialist Big Data Engineer at Societe Generale (SWIFT fraud detection, ISO20022 upgrade, disaster recovery cut from 12h to 2h); Senior Data Engineer at Mindtree (Mainframe-to-AWS migration, Kafka streaming; won the 'A-Team' award six times).",
+      "- Core skills: Scala, Python, SQL, R; Spark, Hadoop, Kafka, Oozie, Airflow; AWS (S3, EMR, EC2, Glue) and GCP (BigQuery, DataProc, Pub/Sub); PostgreSQL, Hive, Cassandra, Neo4j, MongoDB; TensorFlow, PyTorch, scikit-learn. Recent focus: LLMs, RAG and agentic AI.",
+      "- Education: M.Sc Data Science (Distinction) from the University of Birmingham; B.E Electrical & Electronics Engineering (Distinction) from Sir M. Visvesvaraya Institute of Technology.",
+      "- 100+ certifications including Deep Learning, RAG & Agentic AI, IBM Machine Learning and Data Science, and Google Data Analytics.",
+      "- Notable projects: multi-document news text summarization (Master's thesis using T5/BART/LLAMA-2), an AI infrastructure-monitoring app, UK fuel-inflation time-series forecasting, and a Neuroimaging Data Vault 2.0. Industry domains: Finance, Banking, Retail, Supply Chain and Hospitality.",
+      "- Open to new data engineering, data science and applied-AI opportunities."
+    ].join("\n");
+
+    function escapeHtml(s) { return s.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;'); }
+    function setAnswer(html, cls) { answer.className = 'ask-answer show' + (cls ? ' ' + cls : ''); answer.innerHTML = html; }
+
+    function doAsk(q) {
+      q = (q || '').trim();
+      if (!q || busy) return;
+      busy = true;
+      if (sendBtn) sendBtn.setAttribute('disabled', 'true');
+      setAnswer('<span class="dots">Thinking</span>');
+      var ctrl = new AbortController();
+      var timer = setTimeout(function () { ctrl.abort(); }, 30000);
+      fetch('https://text.pollinations.ai/', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ model: 'openai', referrer: 'vijayjawali.com',
+          messages: [{ role: 'system', content: CONTEXT }, { role: 'user', content: q }] }),
+        signal: ctrl.signal
+      }).then(function (r) {
+        if (!r.ok) throw new Error('status ' + r.status);
+        return r.text();
+      }).then(function (txt) {
+        clearTimeout(timer);
+        var out = txt;
+        try { var j = JSON.parse(txt); if (j && j.choices && j.choices[0]) out = j.choices[0].message.content; } catch (e) {}
+        out = (out || '').trim();
+        if (!out) throw new Error('empty');
+        setAnswer(escapeHtml(out));
+      }).catch(function () {
+        clearTimeout(timer);
+        setAnswer("Sorry — the assistant is unavailable right now. You can reach Vijay directly at <a href=\"mailto:vijayjawali@outlook.com\">vijayjawali@outlook.com</a> or <a href=\"Resume.pdf\" download target=\"_blank\">download his resume</a>.");
+      }).then(function () {
+        busy = false;
+        if (sendBtn) sendBtn.removeAttribute('disabled');
+      });
+    }
+
+    if (form) form.addEventListener('submit', function (e) { e.preventDefault(); doAsk(input.value); });
+    chips.forEach(function (c) { c.addEventListener('click', function () { input.value = c.textContent; doAsk(c.textContent); }); });
+  });
 })();
