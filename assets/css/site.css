@@ -272,8 +272,9 @@ hr { border: 0; height: 1px; background: var(--border); margin: 2.5rem 0; }
 .page-quote { font-style: italic; color: var(--text-soft); border-left: 3px solid var(--accent); padding-left: 16px; margin-top: 14px; max-width: 60ch; }
 
 /* ---------- Timeline ---------- */
-.timeline { position: relative; margin: 8px 0; padding-left: 4px; }
-.timeline::before { content: ""; position: absolute; left: 15px; top: 6px; bottom: 6px; width: 2px; background: var(--border); }
+.timeline { position: relative; margin: 8px 0; }
+/* connector segment from each dot to the next one (centered on the dot, stops at the last dot) */
+.tl-item:not(:last-child)::after { content: ""; position: absolute; left: 15px; top: 24px; bottom: -22px; width: 2px; background: var(--border); }
 .tl-item { position: relative; padding: 0 0 8px 46px; margin-bottom: 14px; display: block; text-decoration: none; }
 .tl-item::before {
   content: ""; position: absolute; left: 8px; top: 8px; width: 16px; height: 16px; border-radius: 50%;
@@ -310,7 +311,8 @@ hr { border: 0; height: 1px; background: var(--border); margin: 2.5rem 0; }
 
 /* ---------- Roles nested within a single company ---------- */
 .roles { margin-top: 22px; padding-left: 24px; position: relative; }
-.roles::before { content: ""; position: absolute; left: 5px; top: 10px; bottom: 14px; width: 2px; background: var(--border); }
+/* connector segment from each role dot to the next one */
+.role-block:not(:last-child)::after { content: ""; position: absolute; left: -18px; top: 36px; bottom: -40px; width: 2px; background: var(--border); }
 .role-block { position: relative; scroll-margin-top: calc(var(--nav-h) + 24px); background: var(--surface-2); border: 1px solid var(--border); border-radius: var(--radius); padding: 18px 20px; margin-bottom: 18px; }
 .role-block:last-child { margin-bottom: 0; }
 .role-block::before { content: ""; position: absolute; left: -24px; top: 22px; width: 14px; height: 14px; border-radius: 50%; background: var(--surface); border: 3px solid var(--accent); box-shadow: 0 0 0 4px var(--surface); }
@@ -319,7 +321,7 @@ hr { border: 0; height: 1px; background: var(--border); margin: 2.5rem 0; }
 .role-head .role-date { font-family: var(--mono); font-size: .8rem; color: var(--muted); margin-left: auto; }
 .role-block .note { background: var(--surface); }
 .role-block .block-label:first-of-type { margin-top: 16px; }
-@media (max-width: 560px) { .roles { padding-left: 20px; } .role-block::before { left: -20px; } }
+@media (max-width: 560px) { .roles { padding-left: 20px; } .role-block::before { left: -20px; } .role-block:not(:last-child)::after { left: -14px; } }
 
 /* ---------- Spotlight (projects/articles) ---------- */
 .spot { display: block; overflow: hidden; padding: 0; }
