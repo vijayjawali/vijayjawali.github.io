@@ -156,7 +156,7 @@ hr { border: 0; height: 1px; background: var(--border); margin: 2.5rem 0; }
 @media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) .theme-toggle .sun { display: inline; } :root:not([data-theme="light"]) .theme-toggle .moon { display: none; } }
 
 .nav-toggle { display: none; }
-@media (max-width: 900px) {
+@media (max-width: 1080px) {
   .nav-links {
     position: fixed; inset: var(--nav-h) 0 auto 0; flex-direction: column; align-items: stretch; gap: 4px;
     background: var(--surface); border-bottom: 1px solid var(--border); padding: 14px 18px 20px;
@@ -462,23 +462,6 @@ hr { border: 0; height: 1px; background: var(--border); margin: 2.5rem 0; }
    feature/creative — data-pipeline hero, impact metrics, Ask-me widget
    ========================================================================= */
 
-/* ---------- Hero right column ---------- */
-.hero-visual { display: flex; align-items: center; justify-content: center; }
-@media (max-width: 860px) { .hero-visual { margin-top: 8px; } }
-
-/* Animated data pipeline */
-.pipeline { position: relative; width: 100%; max-width: 340px; padding: 8px 0; }
-.pipeline::before { content: ""; position: absolute; left: 19px; top: 26px; bottom: 26px; width: 2px; background: var(--border); }
-.pipe-packet { position: absolute; left: 15px; top: 0; width: 10px; height: 10px; border-radius: 50%; background: var(--accent); box-shadow: 0 0 10px 2px var(--accent-ring); animation: pipe-flow 3.2s linear infinite; z-index: 0; }
-.pipe-packet.p2 { animation-delay: 1.6s; }
-@keyframes pipe-flow { 0% { top: 12px; opacity: 0; } 12% { opacity: 1; } 88% { opacity: 1; } 100% { top: calc(100% - 16px); opacity: 0; } }
-.pipe-stage { position: relative; display: flex; align-items: center; gap: 14px; padding: 9px 0; }
-.pipe-node { position: relative; z-index: 1; width: 40px; height: 40px; flex: none; border-radius: 12px; display: grid; place-items: center; font-size: 1.05rem; background: var(--surface); border: 1px solid var(--border); color: var(--muted); box-shadow: var(--shadow-sm); animation: pipe-glow 3.2s ease-in-out infinite; animation-delay: calc(var(--i) * 0.8s); }
-@keyframes pipe-glow { 0%, 62%, 100% { border-color: var(--border); color: var(--muted); box-shadow: var(--shadow-sm); transform: none; } 10%, 26% { border-color: var(--accent); color: var(--accent); box-shadow: 0 0 0 4px var(--accent-ring); transform: translateY(-1px); } }
-.pipe-card { display: flex; flex-direction: column; }
-.pipe-name { margin: 0; font-weight: 700; font-size: .98rem; color: var(--text); }
-.pipe-sub { margin: 0; font-family: var(--mono); font-size: .75rem; color: var(--muted); }
-@media (prefers-reduced-motion: reduce) { .pipe-packet { display: none; } .pipe-node { animation: none; } }
 
 /* ---------- Impact metrics ---------- */
 .metrics { display: grid; grid-template-columns: repeat(5, 1fr); gap: 16px; }
@@ -506,3 +489,24 @@ hr { border: 0; height: 1px; background: var(--border); margin: 2.5rem 0; }
 .ask-answer .dots::after { content: "…"; animation: askdots 1.2s steps(4) infinite; }
 @keyframes askdots { 0% { content: ""; } 25% { content: "."; } 50% { content: ".."; } 75% { content: "..."; } }
 .ask-note { font-size: .77rem; color: var(--muted); margin: 12px 0 0; }
+
+/* ---------- Responsive fixes (mobile / tablet) ---------- */
+.nav-contact { display: none; }
+.li-card { max-width: min(440px, 100%); }
+@media (max-width: 767px) {
+  .ask-input, .search input { font-size: 16px; }   /* prevents iOS zoom-on-focus */
+}
+@media (max-width: 560px) {
+  .wrap, .nav-inner { padding-left: 16px; padding-right: 16px; }
+  .nav-actions > .btn { display: none; }            /* CONTACT moves into the menu */
+  .nav-links .nav-contact { display: block; }
+  .brand { font-size: .98rem; gap: .4rem; }
+  .brand-logo { width: 28px; height: 28px; }
+  .li-card { display: flex; flex-wrap: wrap; width: 100%; }
+  .ask-box { padding: 16px; }
+  .ask-row { flex-wrap: wrap; }
+  .ask-send { width: 100%; justify-content: center; }
+  .xp-date, .role-head .role-date { margin-left: 0; }
+  #topButton { right: 14px; bottom: 14px; }
+}
+@media (max-width: 900px) { .metrics > .metric:last-child:nth-child(odd) { grid-column: 1 / -1; } }
